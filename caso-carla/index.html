@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1222">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:title" content="El caso del regalo desaparecido">
+<meta property="og:description" content="Confidencial · Expediente n.º 0301-21 · Brigada de Cumpleaños">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1222'/%3E%3Cpath d='M22 30v-8a10 10 0 0 1 20 0v8' fill='none' stroke='%23c8ccd6' stroke-width='5'/%3E%3Crect x='16' y='30' width='32' height='24' rx='4' fill='%23d1a94c'/%3E%3C/svg%3E">
+<title>El caso del regalo desaparecido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Sans:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: una columna. Cine negro: mesa oscura, expedientes de papel manila, hilo rojo y latón */
+  color-scheme: dark;
+  --ink:#0d1222;        /* fondo */
+  --ink-2:#1a2138;      /* paneles sobre el fondo */
+  --line:#2f3a60;
+  --mist:#b4bcd2;       /* texto sobre el fondo */
+  --paper:#efe3c2;      /* hoja manila */
+  --paper-2:#fbf5e2;
+  --paper-edge:#d6c492;
+  --type:#241f17;       /* texto sobre papel */
+  --sepia:#6b5a31;
+  --stamp:#b3261e;      /* sello, hilo rojo, errores */
+  --brass:#d1a94c;      /* latón: candado, aciertos */
+  --good:#2f6b3a;
+  --display:"Special Elite","Courier New",Courier,monospace;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--ink);color:var(--mist);font-family:var(--body);font-size:17px;line-height:1.55;min-height:100%;overflow-x:hidden;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:contain}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%, #2a3562 0, rgba(13,18,34,0) 55%),radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.55) 0, rgba(0,0,0,0) 60%)}
+body::after{content:"";position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) calc(48px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));display:flex;flex-direction:column;gap:14px}
+button{font:inherit;cursor:pointer;color:inherit;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+/* cabecera */
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.top .file{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.snd{background:none;border:1px solid var(--line);border-radius:20px;padding:4px 10px;font-size:12px;color:var(--mist);white-space:nowrap}
+
+/* estado: pruebas archivadas */
+.status{background:var(--ink-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.status .lbl{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.status .pill{font-family:var(--display);font-size:12px;letter-spacing:.08em;color:var(--stamp);text-transform:uppercase}
+.status .pill.open{color:var(--brass)}
+.ev{display:flex;gap:5px}
+.ev i{flex:1;height:26px;border-radius:4px;border:1.5px solid #46527d;display:flex;align-items:center;justify-content:center;font:normal 13px var(--display);color:#5b6690}
+.ev i.now{border-color:#8791b5;color:var(--mist)}
+.ev i.on{border-color:var(--brass);background:#2a2412;color:var(--brass)}
+
+/* portada y tarjetas de capitulo */
+.card{background:linear-gradient(180deg,#141b33,#0b0f1d);border:1px solid var(--line);border-radius:8px;padding:26px 20px 22px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.card .kick{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:0 0 8px;min-height:1.5em}
+.card h2{font-family:var(--display);font-weight:400;color:#f4ecd6;font-size:30px;line-height:1.15;margin:0 0 8px;min-height:2.3em;text-wrap:balance}
+.card h1{font-family:var(--display);font-weight:400;color:#f4ecd6;font-size:clamp(34px,10vw,46px);line-height:1.05;margin:6px 0 4px;text-wrap:balance}
+.card .where{font-size:15px;margin:0 0 14px}
+.card .big-n{font-family:var(--display);font-size:92px;line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--brass);margin-bottom:2px}
+.card svg{display:block;width:100%;height:auto;border-radius:6px;margin:6px 0 18px;border:1px solid var(--line)}
+.card .brief{text-align:left;font-size:16px;margin:0 0 16px}
+.card .brief p{margin:0 0 10px}
+.card .brief strong{color:#f4ecd6}
+.cstamp{display:inline-block;font-family:var(--display);font-size:15px;letter-spacing:.16em;color:var(--stamp);border:3px solid var(--stamp);padding:5px 12px 2px;border-radius:4px;transform:rotate(-7deg);text-transform:uppercase;margin:4px 0 12px}
+
+/* hoja de expediente */
+.sheet{background:var(--paper);color:var(--type);border-radius:5px;padding:22px 20px 24px;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.6);
+  background-image:radial-gradient(circle at 92% 97%, rgba(0,0,0,0) 0 34px, rgba(120,80,30,.16) 35px 39px, rgba(0,0,0,0) 40px),repeating-linear-gradient(transparent 0 31px, rgba(120,95,40,.10) 31px 32px)}
+.scene{margin:-22px -20px 16px;border-bottom:3px solid var(--type);background:#0b0f1c}
+.scene svg{display:block;width:100%;height:auto}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.kick{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sepia);margin:0 0 4px}
+.sheet h2{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.sheet p{margin:0 0 12px}
+.stamp{flex:none;font-family:var(--display);font-size:12px;letter-spacing:.12em;color:var(--stamp);border:2px solid var(--stamp);padding:3px 8px 1px;border-radius:3px;transform:rotate(6deg);text-transform:uppercase;margin-top:2px}
+.stamp.ok{color:var(--good);border-color:var(--good)}
+.note{font-family:var(--display);font-size:16px;background:var(--paper-2);border-left:4px solid var(--paper-edge);padding:12px 14px;margin:14px 0;line-height:1.5}
+.note.hand{font-family:var(--hand);font-size:23px;line-height:1.25;border-left:0;transform:rotate(-1deg);box-shadow:0 3px 8px rgba(0,0,0,.2)}
+figure{margin:0}
+.photo{margin:16px 6px;background:#fffaf0;padding:8px 8px 10px;box-shadow:0 4px 10px rgba(0,0,0,.3);transform:rotate(-1.5deg);position:relative}
+.photo::before{content:"";position:absolute;top:-9px;left:50%;width:74px;height:20px;margin-left:-37px;background:rgba(214,196,146,.75);transform:rotate(2deg)}
+.photo img{max-width:100%;display:block}
+.photo figcaption{font-family:var(--hand);font-size:20px;color:var(--sepia);margin-top:4px}
+
+/* pruebas */
+.task{border-top:1.5px dashed #b9a56f;margin-top:18px;padding-top:16px}
+.task .q{font-weight:600;margin:0 0 10px}
+.task.done .q{font-weight:500}
+.done-line{display:flex;gap:8px;align-items:flex-start;color:var(--good);font-weight:500;margin:6px 0 0}
+.done-line::before{content:"✓";font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input[type=text]{flex:1 1 180px;min-width:0;font:inherit;font-family:var(--display);font-size:18px;letter-spacing:.06em;text-transform:uppercase;padding:11px 12px;border:2px solid #8f7c46;border-radius:6px;background:#fffaf0;color:var(--type)}
+.btn{background:var(--type);color:#f6eed6;border:0;border-radius:6px;padding:12px 18px;font-weight:600}
+.btn:disabled{opacity:.5}
+.btn.big{width:100%;padding:15px 18px;font-size:18px;font-family:var(--display);font-weight:400;letter-spacing:.05em;background:linear-gradient(#e6c367,#c69a36);color:#231b06;box-shadow:0 4px 0 #86661c}
+.btn.big:active{transform:translateY(3px);box-shadow:0 1px 0 #86661c}
+.link{background:none;border:0;padding:6px 0;color:var(--sepia);text-decoration:underline;font-size:15px}
+.msg{min-height:1.4em;margin:8px 0 0;font-size:15px;color:var(--stamp);font-weight:500}
+.hint{background:var(--paper-2);border:1px solid var(--paper-edge);border-radius:6px;padding:10px 12px;margin:8px 0 0;font-size:15px}
+.hint b{font-family:var(--display);font-weight:400;letter-spacing:.06em}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;background:#fffaf0;border:2px solid #8f7c46;border-radius:6px;padding:12px 14px;color:var(--type);font-weight:500;position:relative}
+.opt.bad{border-color:var(--stamp);opacity:.75}
+.opt-fb{font-size:15px;color:var(--stamp);margin:-2px 0 4px 4px}
+.opt.lie{border-color:var(--stamp);padding-right:108px}
+.opt.lie span{text-decoration:line-through;text-decoration-color:var(--stamp);text-decoration-thickness:2px}
+.opt.lie::after{content:"¡mentira!";position:absolute;right:8px;top:50%;font-family:var(--hand);font-weight:700;font-size:22px;color:var(--stamp);transform:translateY(-50%) rotate(-8deg)}
+
+/* ordenar */
+.ord{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.ord .it{display:flex;align-items:center;gap:8px;background:#fffaf0;border:2px solid #8f7c46;border-radius:6px;padding:8px 8px 8px 12px}
+.ord .n{font-family:var(--display);color:var(--sepia);width:18px}
+.ord .tx{flex:1;font-size:16px;line-height:1.35}
+.ord .mv{width:42px;height:42px;border-radius:6px;border:1.5px solid #8f7c46;background:var(--paper);color:var(--type);font-size:16px}
+.ord .mv:disabled{opacity:.3}
+
+/* ruedas, caja fuerte y candado */
+.wheels{display:flex;justify-content:center;gap:10px}
+.wheel{display:flex;flex-direction:column;align-items:center;gap:6px}
+.wheel button{width:50px;height:36px;border-radius:6px;border:0;background:#4a5063;color:#f4ecd6;font-size:15px}
+.wheel .v{width:50px;height:58px;border-radius:6px;background:#0c0f17;border:2px solid var(--brass);color:var(--brass);font-family:var(--display);font-size:34px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 6px 8px rgba(0,0,0,.7),inset 0 -6px 8px rgba(0,0,0,.7)}
+.safe{position:relative;margin-bottom:12px;perspective:900px}
+.safe-in{position:absolute;inset:0;background:#07090f;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.safe-in div{background:var(--paper);color:var(--type);font-family:var(--display);font-size:14px;padding:16px 14px;transform:rotate(-4deg);box-shadow:0 4px 10px #000}
+.safe-door{position:relative;border-radius:10px;padding:20px 12px 16px;border:4px solid #5c6378;transform-origin:left center;transition:transform .9s cubic-bezier(.3,.1,.2,1);
+  background:radial-gradient(circle at 12px 12px,#aab0c2 0 3px,rgba(0,0,0,0) 4px),radial-gradient(circle at calc(100% - 12px) 12px,#aab0c2 0 3px,rgba(0,0,0,0) 4px),radial-gradient(circle at 12px calc(100% - 12px),#aab0c2 0 3px,rgba(0,0,0,0) 4px),radial-gradient(circle at calc(100% - 12px) calc(100% - 12px),#aab0c2 0 3px,rgba(0,0,0,0) 4px),linear-gradient(135deg,#3b4152,#272b38 55%,#343a4b)}
+.safe.open .safe-door{transform:rotateY(-78deg)}
+.safe-plate{font-family:var(--display);font-size:11px;letter-spacing:.2em;color:#aab0c2;text-align:center;margin-bottom:12px}
+.padlock{margin:4px auto 14px;width:min(100%,300px)}
+.shackle{width:130px;height:84px;margin:0 auto -8px;border:16px solid #a3a9b8;border-bottom:0;border-radius:65px 65px 0 0;transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform-origin:88% 100%;box-shadow:inset 0 3px 0 rgba(255,255,255,.35)}
+.padlock.open .shackle{transform:translateY(-20px) rotate(-22deg)}
+.pbody{position:relative;background:linear-gradient(135deg,#e6c367,#b88a2a 60%,#d6ae4e);border-radius:14px;padding:18px 10px 16px;box-shadow:0 6px 0 #7b5c17,0 12px 18px rgba(0,0,0,.35)}
+
+/* linterna */
+.flash{position:relative;border-radius:6px;overflow:hidden;margin:0 0 6px;touch-action:none;cursor:crosshair;background:#0b1022}
+.flash svg{display:block;width:100%;height:auto}
+.flash .lit{position:absolute;inset:0}
+.cap{font-size:14px;color:var(--sepia);margin:0 0 14px}
+
+/* carta */
+.menu{background:#fffaf0;border:1px solid var(--paper-edge);outline:1px solid var(--paper-edge);outline-offset:-7px;padding:22px 20px;margin:0 0 14px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.menu h3{font-family:var(--hand);font-weight:700;font-size:34px;line-height:1;margin:0;color:var(--stamp)}
+.menu .sub{font-size:12px;color:var(--sepia);margin:4px 0 14px;letter-spacing:.14em;text-transform:uppercase}
+.menu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;text-align:left}
+.menu li{display:flex;gap:8px;align-items:baseline;font-size:16px}
+.menu .dots{flex:1;border-bottom:1px dotted #b9a56f;transform:translateY(-4px)}
+.menu .pr{font-variant-numeric:tabular-nums;color:var(--sepia)}
+
+/* retrato robot */
+.who{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.who .st{font-weight:500;margin-bottom:6px}
+.who .ch{display:flex;gap:6px}
+.who .ch button{flex:1;padding:10px 4px;border-radius:6px;border:2px solid #8f7c46;background:#fffaf0;color:var(--type);font-weight:500;font-size:15px}
+.who .ch button.sel{background:var(--type);color:#f6eed6;border-color:var(--type)}
+.who .w.bad .st{color:var(--stamp)}
+
+/* interrogatorio */
+.interr{background:#11162a;color:#e8e2cf;border-radius:6px;padding:12px;margin:0 0 14px}
+.tabs{display:flex;gap:6px;margin-bottom:10px}
+.tabs button{flex:1;padding:8px 4px 6px;border-radius:6px;border:2px solid #3a466f;background:#1a2138;color:#e8e2cf;font-size:13px;font-weight:600;line-height:1.2;display:flex;flex-direction:column;align-items:center;gap:4px}
+.tabs button svg{width:44px;height:44px;display:block}
+.tabs button.sel{border-color:var(--brass);background:#2a2412;color:var(--brass)}
+.qa{display:flex;flex-direction:column;gap:6px}
+.qa button{text-align:left;background:none;border:0;border-bottom:1px dashed #3a466f;padding:8px 0;color:#e8e2cf;font-weight:600;font-size:15px}
+.qa .a{font-family:var(--display);font-size:15px;padding:4px 0 6px 12px;border-left:3px solid var(--brass);color:#f4ecd6}
+
+/* documento ampliable */
+.doc{margin:16px 2px 10px;background:#fffaf0;padding:6px 6px 4px;box-shadow:0 5px 14px rgba(0,0,0,.35);transform:rotate(-1.2deg)}
+.doc img{display:block;width:100%;height:auto;cursor:zoom-in}
+.doc figcaption{font-size:13px;color:var(--sepia);text-align:center;padding-top:4px}
+.zoomer{position:fixed;inset:0;z-index:20;background:rgba(5,7,14,.97);overflow:auto;-webkit-overflow-scrolling:touch}
+.zoomer img{display:block;width:min(1000px,260vw);max-width:none;margin:0 auto}
+.zoomer .btn{position:fixed;top:12px;right:12px;z-index:21;background:var(--brass);color:#231b06}
+
+/* final */
+.letter{font-family:var(--hand);font-size:25px;line-height:1.3;background:#fffaf0;padding:18px 18px 14px;margin:14px 2px;transform:rotate(-1deg);box-shadow:0 5px 12px rgba(0,0,0,.3)}
+.letter .sign{display:block;text-align:right;font-weight:700;font-size:28px;margin-top:6px}
+.combo{display:flex;gap:10px;justify-content:center;margin:14px 0 18px}
+.combo span{width:56px;height:70px;border-radius:8px;background:#2a2412;border:2px solid var(--brass);color:var(--brass);font-family:var(--display);font-size:40px;display:flex;align-items:center;justify-content:center}
+.badge{display:flex;align-items:center;gap:14px;border:2px solid var(--good);border-radius:8px;padding:10px 14px;margin:14px 0}
+.badge svg{width:64px;height:64px;flex:none}
+.badge b{display:block;font-family:var(--display);font-weight:400;font-size:19px;color:var(--good);line-height:1.2}
+.badge small{font-size:13px;color:var(--sepia)}
+.foot{text-align:center;font-size:13px;color:#7f89a8}
+.foot button{color:#7f89a8;font-size:13px}
+.confirm{background:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:8px;color:var(--mist)}
+.confirm .row{justify-content:center;margin-top:8px}
+.confirm .btn{background:var(--stamp);color:#fff;padding:9px 14px}
+.confirm .btn.alt{background:var(--line)}
+canvas#fx{position:fixed;inset:0;z-index:6;pointer-events:none;width:100%;height:100%}
+
+  .sheet.in,.card{animation:rise .45s ease-out both}
+  @keyframes rise{from{transform:translateY(14px);opacity:.4}to{transform:none;opacity:1}}
+  .slam{animation:slam .5s .15s cubic-bezier(.2,1.4,.4,1) both}
+  .cstamp.slam{animation-delay:.9s}
+  @keyframes slam{0%{transform:scale(3.4) rotate(-16deg);opacity:0}100%{opacity:1}}
+  .shake{animation:shake .35s}
+  @keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .ev i.new{animation:pop .7s ease-out}
+  @keyframes pop{0%{transform:scale(1.9);box-shadow:0 0 18px var(--brass)}100%{transform:none;box-shadow:none}}
+  .waves{animation:wave 3.2s linear infinite}
+  .waves.slow{animation-duration:5.5s;animation-direction:reverse}
+  @keyframes wave{to{transform:translateX(40px)}}
+  .flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.1s ease-in-out infinite}
+  @keyframes flick{0%,100%{transform:scale(1,1)}30%{transform:scale(.86,1.12)}60%{transform:scale(1.08,.9) skewX(5deg)}}
+  .lamp{animation:swing 4.5s ease-in-out infinite}
+  @keyframes swing{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
+  .qm{animation:bob 2.4s ease-in-out infinite}
+  .qm.b{animation-delay:.8s}.qm.c{animation-delay:1.5s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .leg.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s .5s ease-in-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .qa .a{animation:rise .25s ease-out both}
+  body.still *{animation:none!important;transition:none!important}
+  body.still .leg.draw{stroke-dasharray:none;stroke-dashoffset:0}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header class="top">
+    <div class="file">Expediente n.º 0301-21 · Brigada de Cumpleaños</div>
+    <button class="snd" id="sndBtn" type="button">Sonido: sí</button>
+  </header>
+
+  <div class="status" id="status">
+    <div class="lbl"><span id="evLbl"></span><span class="pill" id="lockPill"></span></div>
+    <div class="ev" id="ev" aria-hidden="true"></div>
+  </div>
+
+  <main id="app"></main>
+
+  <footer class="foot">
+    <button class="link" id="motBtn" type="button">Animaciones: sí</button> · <button class="link" id="resetBtn" type="button">Reiniciar el caso</button>
+    <div id="resetBox"></div>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN: lo que Jose puede querer cambiar está aquí arriba.
+   ===================================================================== */
+var CONFIG = {
+  agente: "Carla",
+  culpable: "Jose",
+  combinacion: "3121",
+  /* fotos: una imagen (data URI) por capítulo; si está vacío no se muestra nada */
+  fotos: { 1:"", 2:"", 3:"", 4:"", 5:"", 6:"", 7:"" },
+  pies:  { 1:"Tavernes", 2:"", 3:"Dénia", 4:"Saona", 5:"Valencia", 6:"", 7:"" },
+  carta: "Carlita: confieso. Escondí tu regalo, le puse un candado y se me olvidó la combinación. Soy un despistado y un desastre, ya lo sabes. Pero hay una fecha que no se me olvida nunca: la del banquito. Feliz cumpleaños."
+};
+
+var CHAPTERS = [
+  { loc:"T", scene:"beach", place:"Playa de Tavernes · verano de 2020", title:"Donde empezó el lío", proof:"Cronología del caso",
+    story:
+      "<p>Para entender un caso hay que volver al principio. Verano de 2020, playa de Tavernes: mascarillas, dos metros de distancia y dos personas que se caían demasiado bien.</p>" +
+      "<p>Según los testigos hubo risitas durante meses y nadie daba el paso. Antes de seguir, demuestra que conoces el caso mejor que nadie.</p>",
+    tasks:[
+      { type:"order", q:"Ordena los hechos del más antiguo al más reciente.",
+        items:[
+          {id:4,t:"Los dos se van a estudiar a Valencia"},
+          {id:3,t:"Petición formal en un banco escondido de Dénia"},
+          {id:1,t:"Risitas en la playa de Tavernes"},
+          {id:5,t:"La agente Carla recibe este caso"},
+          {id:2,t:"Primer beso"}
+        ],
+        hints:["Empieza por la playa. Lo último que ha pasado es esta noche.","El beso fue antes de la petición en el banco. Valencia llegó en 2023."],
+        ok:"Cronología confirmada: playa, beso, banco, Valencia y esta noche." }
+    ] },
+
+  { loc:"T", place:"Archivo policial · invierno de 2020", title:"Antecedentes del sospechoso", proof:"Ficha del sospechoso",
+    story:
+      "<p>El principal sospechoso tiene antecedentes. Su primer delito consta en el archivo: <strong>robo de un beso</strong>, tras medio año de risitas.</p>" +
+      "<p>La ficha está en la caja fuerte. Se abre con la fecha exacta de aquel delito: día y mes.</p>",
+    tasks:[
+      { type:"safe", q:"Gira las ruedas y abre la caja fuerte.", accept:"1912",
+        hints:["Cuatro cifras: dos para el día, dos para el mes.","Fue en diciembre, pocos días antes de Navidad.","19 de diciembre: 1 9 1 2."],
+        ok:"Caja abierta." },
+      { type:"code", q:"Palabra clave de la tarjeta 1",
+        pre:"<div class='note'><strong>FICHA DEL SOSPECHOSO</strong><br>Rasgos: despistado. Desastre reconocido. Llega tarde a todas partes.<br>Atenuante: muy bueno con la víctima.</div>" +
+            "<p>Debajo de la ficha hay una nota escrita a mano:</p>" +
+            "<div class='note hand'>Paso todas las noches a tu lado, pegada a tu cama, y nunca me das las buenas noches. El primero lo abres a diario. La tarjeta 1 está en el segundo.</div>",
+        accept:["RISITAS","RISITA"],
+        place:["MESITA","MESILLA","CAJON"],
+        hints:["Es un mueble pequeño, está pegado a tu cama y tiene cajones.","Abre el segundo cajón de tu mesita de noche."],
+        ok:"«Risitas». Así empezó todo el expediente." }
+    ] },
+
+  { loc:"D", place:"Dénia · junto al ayuntamiento", title:"La escena del banco", proof:"Inscripciones del banco",
+    story:
+      "<p>Escena principal del caso: un banquito medio escondido junto a la plaza del ayuntamiento de Dénia, a la sombra de un árbol. Aquí el sospechoso hizo su petición formal.</p>" +
+      "<p>Es de noche y no se ve nada. Enciende la linterna: alguien dejó cosas escritas.</p>",
+    tasks:[
+      { type:"code", widget:"flash", q:"Palabra clave de la tarjeta 2", accept:["BANQUITO","BANQUITOS"], place:["ALMOHADA"],
+        hints:["Pasa el dedo despacio por toda la escena: hay cinco inscripciones.","Tres de ellas forman una frase que te dice dónde buscar.","La tarjeta 2 duerme bajo tu almohada."],
+        ok:"«Banquito». La escena queda documentada." }
+    ] },
+
+  { loc:"D", scene:"table", place:"Saona · Dénia", title:"La primera cena", proof:"Carta falsa del Saona",
+    story:
+      "<p>El primer restaurante al que fuisteis juntos. El sospechoso volvió anoche y, antes de irse, cambió la carta por una falsa.</p>" +
+      "<p>Los platos no importan. Lo que importa es cómo empieza cada uno.</p>",
+    tasks:[
+      { type:"code", widget:"menu", q:"Palabra clave de la tarjeta 3", accept:["PASTA","LAPASTA"], place:["ARMARIO"],
+        hints:["Lee la carta de arriba abajo, pero solo la primera letra de cada plato.","Las iniciales forman un mueble de tu habitación.","Abre tu armario."],
+        ok:"«Pasta». De la de comer, no de la otra." }
+    ] },
+
+  { loc:"V", scene:"lineup", place:"Valencia · desde 2023", title:"Retrato robot", proof:"Retrato robot",
+    story:
+      "<p>Valencia: aquí es donde más tiempo habéis pasado juntos y donde más pruebas hay. Con lo que sabes ya puedes hacer el retrato robot de los implicados.</p>" +
+      "<p>Asigna cada dato a quien corresponda. Cuidado: alguno vale para los dos.</p>",
+    tasks:[
+      { type:"who", q:"¿De quién hablamos?",
+        items:[
+          {t:"Elige siempre la película", a:"C"},
+          {t:"Llega tarde", a:"J"},
+          {t:"Tiene familia de Tavernes", a:"B"},
+          {t:"Hizo la petición en el banco", a:"J"},
+          {t:"Dice que el otro es un desastre", a:"C"},
+          {t:"Su cumpleaños se celebra siempre en un italiano", a:"C"},
+          {t:"Disfruta del cine y de salir a cenar", a:"B"}
+        ],
+        hints:["Hay dos datos que valen para los dos.","La familia de Tavernes y los planes de cine y cena son cosa de los dos."],
+        ok:"Retrato robot completo. El perfil del sospechoso encaja demasiado bien con alguien." }
+    ],
+    outro:
+      "<p>Con tus datos, el dibujante de la Brigada ha terminado el retrato robot del sospechoso.</p>" +
+      "<figure class='doc'><img class='zoomable' src='img/retrato.jpg' alt='Retrato robot del sospechoso, dibujado a lápiz, con la lista de sus características'><figcaption>Toca el retrato para ampliarlo</figcaption></figure>" +
+      "<p>¿Le suena de algo, agente?</p>" },
+
+  { loc:"V", scene:"room", place:"Comisaría · sala de interrogatorios", title:"El interrogatorio", proof:"Declaración con tres mentiras",
+    story:
+      "<p>La noche de los hechos hubo sesión de cine. Tenemos a tres personas en la sala. Pregúntales lo que quieras y decide quién miente.</p>",
+    tasks:[
+      { type:"choice", widget:"interr", q:"¿Quién está mintiendo?",
+        options:[
+          {t:"El acomodador del cine", fb:"Su versión cuadra con las cámaras. Queda libre."},
+          {t:"El camarero del Saona", fb:"Tiene a todo el restaurante de testigo. Queda libre."},
+          {t:"Jose", correct:true}
+        ],
+        hints:["Compara lo que dice cada uno con el retrato robot del capítulo 5.","Uno de ellos dice que llegó puntual y que eligió la película."],
+        ok:"Jose. Su declaración no se sostiene." },
+      { type:"lies", q:"Declaración firmada de Jose. Marca todas las frases que son mentira.",
+        items:[
+          {t:"«Llegué al cine el primero, diez minutos antes.»", lie:true},
+          {t:"«La película la elegí yo, como siempre.»", lie:true},
+          {t:"«Con Carla soy muy bueno.»", lie:false},
+          {t:"«Soy una persona organizada, nunca pierdo nada.»", lie:true}
+        ],
+        hints:["Hay tres mentiras y una verdad.","La verdad es la que tú misma sueles admitir de él."],
+        ok:"Tres mentiras y una verdad. Al verse descubierto, el sospechoso se derrumba." }
+    ],
+    outro:
+      "<div class='note'><strong>GIRO EN EL CASO</strong><br>«Vale, lo confieso. No robé nada. Escondí tu regalo en la caja para darte una sorpresa, le puse un candado… y se me olvidó la combinación. Ya lo dices tú: soy un desastre.»</div>" +
+      "<p>No hay ladrón. Hay un despistado. La misión cambia: hay que reconstruir la combinación que él mismo ha perdido.</p>" },
+
+  { loc:"V", scene:"envelope", place:"Tu habitación · esta noche", title:"La combinación perdida", proof:"Sobre abierto",
+    story:
+      "<p>El sospechoso recuerda una sola cosa: antes de olvidarlo todo metió una pista en un <strong>sobre sellado</strong>. Es el sobre que tienes desde el principio y que no podías abrir.</p>" +
+      "<p>Ha llegado el momento. Ábrelo.</p>",
+    tasks:[
+      { type:"code", q:"Palabra clave que hay dentro del sobre", accept:["CARLITA"],
+        hints:["Está escrita en la carta que hay dentro del sobre.","Es como él te llama cuando se pone tierno."],
+        ok:"«Carlita». Sobre verificado." },
+      { type:"padlock", q:"Prueba la combinación en este candado. Si se abre aquí, se abre el de verdad.",
+        pre:"<p>En el bolsillo del sospechoso aparece un papel arrugado:</p><div class='note hand'>Para no olvidarla nunca usé el día en que empezó todo. Día, mes y año. Sin ceros y con el año corto.</div>",
+        accept:"3121",
+        hints:["El día en que empezó todo es el del banco de Dénia.","3 de enero de 2021: día 3, mes 1, año 21."],
+        ok:"Candado abierto." }
+    ] }
+];
+
+var INTERR = [
+  { n:"Acomodador", qa:[
+    ["¿Dónde estabas?","En la puerta de la sala 4, cortando entradas, como cada noche."],
+    ["¿Viste algo raro?","A un chico que llegó con la película empezada y sin palomitas. Lo normal en él."],
+    ["¿Conoces a la víctima?","De vista. Siempre sabe qué película quiere ver."] ]},
+  { n:"Camarero", qa:[
+    ["¿Dónde estabas?","En el Saona, de turno hasta el cierre. Pregunte a cualquier mesa."],
+    ["¿Viste algo raro?","Nada. Aunque sé de una pareja que cada 18 de noviembre cena en un italiano. Esta noche tampoco han fallado."],
+    ["¿Conoces a la víctima?","Claro. Fue aquí su primera cena con ese chico."] ]},
+  { n:"Jose", qa:[
+    ["¿Dónde estabas?","En el cine. Llegué el primero, diez minutos antes."],
+    ["¿Viste algo raro?","Nada. Soy una persona organizada, nunca pierdo nada."],
+    ["¿Conoces a la víctima?","Un poco. La película la elegí yo, como siempre."] ]}
+];
+var MENU = [
+  ["Arroz del senyoret","14,50"],["Risotto de setas","12,90"],["Milhojas de berenjena","9,80"],
+  ["Alcachofas a la brasa","10,50"],["Raviolis de calabaza","12,40"],["Ibérico con tomate","11,00"],["Oreo cheesecake","6,50"]
+];
+
+/* ===================== estado ===================== */
+var KEY = "caso-carla-v3";
+var state = { step:0, task:0, hints:0, card:false, mute:false };
+try { var s0 = JSON.parse(localStorage.getItem(KEY)); if (s0 && typeof s0.step==="number") state = s0; } catch(e){}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+var N = CHAPTERS.length, app = document.getElementById("app");
+var REDUCED = !!state.still, entering = true;
+document.body.classList.toggle("still", REDUCED);
+var justSolved = false, lastDone = -1;
+
+function norm(v){ return String(v).toUpperCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Z0-9]/g,""); }
+function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e; }
+function btn(cls, html, fn){ var b=el("button",cls,html); b.type="button"; b.onclick=fn; return b; }
+function svg(vb, inner, label){ return "<svg viewBox='"+vb+"' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='"+label+"'>"+inner+"</svg>"; }
+function txt(x,y,s,size,fill,extra){ return "<text x='"+x+"' y='"+y+"' font-family='Special Elite,Courier New,monospace' font-size='"+size+"' fill='"+fill+"' "+(extra||"")+">"+s+"</text>"; }
+
+/* ===================== sonido (sintetizado, sin archivos) ===================== */
+var AC = null, OUT = null, silentEl = null;
+var IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+function silentUrl(){ var sr=8000, n=sr/2, buf=new ArrayBuffer(44+n), v=new DataView(buf);
+  function w(o,t){ for(var i=0;i<t.length;i++) v.setUint8(o+i,t.charCodeAt(i)); }
+  w(0,"RIFF"); v.setUint32(4,36+n,true); w(8,"WAVE"); w(12,"fmt "); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true);
+  v.setUint32(24,sr,true); v.setUint32(28,sr,true); v.setUint16(32,1,true); v.setUint16(34,8,true); w(36,"data"); v.setUint32(40,n,true);
+  for(var i=0;i<n;i++) v.setUint8(44+i,128);
+  return URL.createObjectURL(new Blob([buf],{type:"audio/wav"})); }
+/* Se llama dentro de cada toque: crea o reanuda el audio. En iPhone, además, pide la categoría de
+   reproducción para que suene aunque el interruptor lateral esté en silencio. */
+function unlockAudio(){
+  if (state.mute) return;
+  try { if (navigator.audioSession) navigator.audioSession.type="playback"; } catch(e){}
+  try {
+    if (!AC){ var C=window.AudioContext||window.webkitAudioContext;
+      if (C){ AC=new C(); var comp=AC.createDynamicsCompressor(); OUT=AC.createGain(); OUT.gain.value=.9; OUT.connect(comp); comp.connect(AC.destination);
+        var b0=AC.createBuffer(1,1,22050), s0=AC.createBufferSource(); s0.buffer=b0; s0.connect(AC.destination); s0.start(0); } }
+    if (AC && AC.state!=="running") AC.resume();
+  } catch(e){}
+  try { if (IS_IOS){ if(!silentEl){ silentEl=new Audio(silentUrl()); silentEl.loop=true; silentEl.setAttribute("playsinline",""); }
+      if (silentEl.paused){ var pr=silentEl.play(); if(pr&&pr.catch) pr.catch(function(){}); } } } catch(e){}
+}
+function ac(){ if (state.mute || !AC) return null; if (AC.state!=="running"){ try{ AC.resume(); }catch(e){} } return AC; }
+function tone(f,d,type,vol,t0,f2){ var a=ac(); if(!a) return;
+  try { var o=a.createOscillator(), g=a.createGain(), t=a.currentTime+(t0||0);
+    o.type=type||"sine"; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+d);
+    g.gain.setValueAtTime(vol||.2,t); g.gain.exponentialRampToValueAtTime(.001,t+d);
+    o.connect(g); g.connect(OUT); o.start(t); o.stop(t+d+.03); } catch(e){} }
+function noise(d,vol,t0,freq,kind){ var a=ac(); if(!a) return;
+  try { var n=Math.floor(a.sampleRate*d), b=a.createBuffer(1,n,a.sampleRate), ch=b.getChannelData(0);
+    for(var i=0;i<n;i++) ch[i]=(Math.random()*2-1)*(1-i/n);
+    var src=a.createBufferSource(), g=a.createGain(), f=a.createBiquadFilter();
+    src.buffer=b; g.gain.value=vol||.3; f.type=kind||"lowpass"; f.frequency.value=freq||1500;
+    src.connect(f); f.connect(g); g.connect(OUT); src.start(a.currentTime+(t0||0)); } catch(e){} }
+function buzz(p){ try{ if(!state.mute && navigator.vibrate) navigator.vibrate(p); }catch(e){} }
+var SFX = {
+  key:function(){ noise(.028,.45,0,2600,"bandpass"); },
+  tick:function(){ tone(1250,.035,"square",.14); noise(.02,.2,0,3200,"bandpass"); },
+  ok:function(){ tone(880,.13,"triangle",.32); tone(1320,.26,"triangle",.32,.11); },
+  bad:function(){ tone(233,.28,"square",.2,0,150); tone(311,.28,"square",.12,0,196); buzz([40,50,40]); },
+  stamp:function(){ noise(.16,.9,0,1700); tone(190,.2,"triangle",.55,0,80); tone(720,.05,"square",.2); buzz(35); },
+  open:function(){ noise(.05,.6,0,3400,"bandpass"); tone(640,.12,"square",.16,.05,320); noise(.3,.45,.2,1500); tone(980,.09,"triangle",.2,.5); },
+  pop:function(){ noise(.22,.4,0,2400); },
+  win:function(){ [523,659,784,1047,1319].forEach(function(f,i){ tone(f,.42,"triangle",.3,i*.13); }); }
+};
+function type(node,text,speed,cb){
+  if (REDUCED){ node.textContent=text; if(cb) cb(); return; }
+  var i=0; node.textContent="";
+  (function step(){ if(!node.isConnected) return; node.textContent=text.slice(0,++i); if(i%2===0) SFX.key();
+    if(i<text.length) setTimeout(step,speed||34); else if(cb) cb(); })();
+}
+
+/* ===================== ilustraciones ===================== */
+function wavePath(y){ var d="M-40 "+y+" q10 -5 20 0"; for(var i=0;i<19;i++) d+=" t20 0"; return d; }
+function umbrella(x,c){ return "<line x1='"+x+"' y1='104' x2='"+x+"' y2='135' stroke='#5a4320' stroke-width='2'/><path d='M"+(x-24)+" 108 Q"+x+" 82 "+(x+24)+" 108Z' fill='"+c+"'/><rect x='"+(x-16)+"' y='134' width='32' height='5' rx='1' fill='"+c+"' opacity='.85'/>"; }
+function bust(x,c,r){ r=r||17; return "<circle cx='"+x+"' cy='58' r='"+r+"' fill='"+c+"'/><path d='M"+(x-36)+" 150 q0 -54 36 -54 q36 0 36 54Z' fill='"+c+"'/>"; }
+var SCENES = {
+  box:function(){ return svg("0 0 320 170",
+    "<defs><radialGradient id='gBox'><stop offset='0' stop-color='#d1a94c' stop-opacity='.5'/><stop offset='1' stop-color='#d1a94c' stop-opacity='0'/></radialGradient></defs>" +
+    "<rect width='320' height='170' fill='#0b0f1d'/><circle cx='160' cy='92' r='96' fill='url(#gBox)'/>" +
+    "<rect x='94' y='72' width='132' height='72' fill='#6e4a25'/><rect x='88' y='54' width='144' height='24' rx='3' fill='#855b2e'/>" +
+    "<rect x='112' y='54' width='10' height='90' fill='#4c3216'/><rect x='198' y='54' width='10' height='90' fill='#4c3216'/>" +
+    "<path d='M150 80 v-10 a10 10 0 0 1 20 0 v10' fill='none' stroke='#c8ccd6' stroke-width='5'/><rect x='143' y='80' width='34' height='28' rx='4' fill='#d1a94c'/><circle cx='160' cy='92' r='3.5' fill='#231b06'/><rect x='158.5' y='93' width='3' height='8' fill='#231b06'/>" +
+    "<g>"+txt(62,58,"?",28,"#d1a94c","class='qm'")+txt(250,48,"?",22,"#d1a94c","class='qm b'")+txt(268,112,"?",30,"#d1a94c","class='qm c'")+"</g>",
+    "Caja de madera cerrada con un candado"); },
+  beach:function(){ return svg("0 0 320 150",
+    "<defs><linearGradient id='gSky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#2d2a5c'/><stop offset='.38' stop-color='#d9605a'/><stop offset='.58' stop-color='#f6b56b'/></linearGradient></defs>" +
+    "<rect width='320' height='150' fill='url(#gSky)'/><circle cx='232' cy='82' r='23' fill='#ffe0a0'/>" +
+    "<rect y='86' width='320' height='36' fill='#2b4a86'/><rect x='212' y='89' width='40' height='3' fill='#ffe0a0' opacity='.6'/><rect x='220' y='97' width='24' height='2' fill='#ffe0a0' opacity='.4'/>" +
+    "<g class='waves'><path d='"+wavePath(95)+"' fill='none' stroke='#b9cff2' stroke-width='1.5' opacity='.7'/></g>" +
+    "<g class='waves slow'><path d='"+wavePath(106)+"' fill='none' stroke='#b9cff2' stroke-width='1.5' opacity='.5'/></g>" +
+    "<path d='M0 116 Q160 106 320 116 V150 H0Z' fill='#ecd39c'/>" + umbrella(92,"#b3261e") + umbrella(228,"#1f3566") +
+    "<line x1='112' y1='143' x2='208' y2='143' stroke='#6b5a31' stroke-width='1.2' stroke-dasharray='4 3'/>" + txt(160,139,"2 m",11,"#6b5a31","text-anchor='middle'"),
+    "Playa al atardecer con dos sombrillas separadas dos metros"); },
+  table:function(){ return svg("0 0 320 150",
+    "<defs><radialGradient id='gGlow'><stop offset='0' stop-color='#ffcf7a' stop-opacity='.6'/><stop offset='1' stop-color='#ffcf7a' stop-opacity='0'/></radialGradient>" +
+    "<pattern id='pChk' width='20' height='20' patternUnits='userSpaceOnUse'><rect width='20' height='20' fill='#f4ead2'/><rect width='10' height='10' fill='#b3261e'/><rect x='10' y='10' width='10' height='10' fill='#b3261e'/></pattern></defs>" +
+    "<rect width='320' height='150' fill='#21130e'/><circle cx='160' cy='60' r='78' fill='url(#gGlow)'/>" +
+    "<rect y='104' width='320' height='46' fill='url(#pChk)'/><rect y='104' width='320' height='46' fill='#21130e' opacity='.3'/>" +
+    "<rect x='154' y='70' width='12' height='36' rx='2' fill='#f4ead2'/><ellipse class='flame' cx='160' cy='60' rx='5' ry='10' fill='#ffcf7a'/>" +
+    "<ellipse cx='78' cy='124' rx='36' ry='9' fill='#fffaf0'/><ellipse cx='242' cy='124' rx='36' ry='9' fill='#fffaf0'/>" +
+    [118,202].map(function(x){ return "<path d='M"+(x-9)+" 74 h18 q0 20 -9 20 q-9 0 -9 -20Z' fill='#7c1f2b'/><line x1='"+x+"' y1='94' x2='"+x+"' y2='108' stroke='#d9d3c3' stroke-width='1.5'/><line x1='"+(x-7)+"' y1='108' x2='"+(x+7)+"' y2='108' stroke='#d9d3c3' stroke-width='1.5'/>"; }).join(""),
+    "Mesa de restaurante con una vela y dos copas"); },
+  lineup:function(){ var h="<rect width='320' height='150' fill='#d8d0bb'/>";
+    [18,38,58,78,98,118].forEach(function(y,i){ h+="<line x1='0' y1='"+y+"' x2='320' y2='"+y+"' stroke='#8d8367' stroke-width='"+(i%2?1:1.6)+"'/>"+txt(6,y-3,String(190-i*10),9,"#6b5a31"); });
+    [[104,CONFIG.agente],[222,CONFIG.culpable]].forEach(function(p){ h+=bust(p[0],"#241f17")+"<rect x='"+(p[0]-31)+"' y='110' width='62' height='24' fill='#fffaf0' stroke='#241f17' stroke-width='1.5'/>"+txt(p[0],127,p[1].toUpperCase(),13,"#241f17","text-anchor='middle'"); });
+    return svg("0 0 320 150",h,"Rueda de reconocimiento con dos siluetas"); },
+  room:function(){ return svg("0 0 320 150",
+    "<rect width='320' height='150' fill='#090c17'/>" +
+    "<g transform='translate(160 0)'><g class='lamp'><path d='M-22 46 L-104 150 H104 L22 46Z' fill='#ffe6a8' opacity='.15'/><line x1='0' y1='0' x2='0' y2='34' stroke='#59607a' stroke-width='2'/><path d='M-14 34 h28 l8 12 h-44Z' fill='#59607a'/><circle cx='0' cy='48' r='4' fill='#ffe6a8'/></g></g>" +
+    "<circle cx='160' cy='88' r='12' fill='#030509'/><path d='M132 122 q0 -24 28 -24 q28 0 28 24Z' fill='#030509'/>" +
+    "<rect x='84' y='118' width='152' height='8' fill='#3a2c1c'/><rect x='96' y='126' width='6' height='24' fill='#3a2c1c'/><rect x='218' y='126' width='6' height='24' fill='#3a2c1c'/>",
+    "Sala de interrogatorios con una lámpara que se balancea"); },
+  envelope:function(){ return svg("0 0 320 150",
+    "<rect width='320' height='150' fill='#10162b'/><g transform='rotate(-5 160 76)'>" +
+    "<rect x='66' y='26' width='188' height='104' rx='3' fill='#f4ead2'/><path d='M66 28 L160 92 L254 28' fill='none' stroke='#cdbb8a' stroke-width='2'/><path d='M66 130 L134 76 M254 130 L186 76' stroke='#cdbb8a' stroke-width='1.5'/>" +
+    "<circle cx='160' cy='92' r='17' fill='#b3261e'/><circle cx='160' cy='92' r='12' fill='none' stroke='#8d1a14' stroke-width='1.5'/>" + txt(160,98,"J",17,"#f4ead2","text-anchor='middle'") +
+    "<g transform='rotate(-10 204 52)'><rect x='166' y='40' width='78' height='20' fill='none' stroke='#b3261e' stroke-width='2'/>"+txt(205,55,"NO ABRIR",12,"#b3261e","text-anchor='middle' letter-spacing='1.5'")+"</g></g>",
+    "Sobre sellado con lacre y el aviso de no abrir"); }
+};
+function flashScene(lit){
+  var c = lit ? {sky:"#f3e9cc",gnd:"#d9c797",hall:"#e6d6a8",trim:"#b9a56f",wood:"#8a6a3a",leg:"#6e5329",leaf:"#7c9463",leaf2:"#8aa56f"}
+              : {sky:"#0b1022",gnd:"#0e1530",hall:"#131b38",trim:"#182246",wood:"#182246",leg:"#182246",leaf:"#141d3c",leaf2:"#16203f"};
+  var h="<rect width='320' height='280' fill='"+c.sky+"'/>";
+  if(!lit) h+="<circle cx='58' cy='40' r='15' fill='#cfd6ea'/><circle cx='64' cy='36' r='13' fill='"+c.sky+"'/>"+[[120,22],[160,48],[196,18],[20,90],[300,30],[286,120],[140,84]].map(function(p){return "<circle cx='"+p[0]+"' cy='"+p[1]+"' r='1.2' fill='#cfd6ea'/>";}).join("");
+  h+="<rect x='14' y='84' width='112' height='140' fill='"+c.hall+"'/><path d='M8 84 L70 52 L132 84Z' fill='"+c.trim+"'/><rect x='58' y='170' width='24' height='54' fill='"+c.trim+"'/>"+
+     "<rect x='26' y='136' width='16' height='22' fill='"+c.trim+"'/><rect x='98' y='136' width='16' height='22' fill='"+c.trim+"'/>"+
+     "<rect y='224' width='320' height='56' fill='"+c.gnd+"'/>"+
+     "<rect x='238' y='112' width='20' height='114' fill='"+c.wood+"'/><circle cx='248' cy='82' r='56' fill='"+c.leaf+"'/><circle cx='204' cy='104' r='32' fill='"+c.leaf2+"'/>"+
+     "<rect x='130' y='176' width='98' height='8' rx='2' fill='"+c.wood+"'/><rect x='130' y='190' width='98' height='8' rx='2' fill='"+c.wood+"'/><rect x='126' y='204' width='106' height='9' rx='2' fill='"+c.wood+"'/>"+
+     "<rect x='136' y='176' width='7' height='52' fill='"+c.leg+"'/><rect x='215' y='176' width='7' height='52' fill='"+c.leg+"'/>";
+  if(lit) h+=txt(22,116,"LA TARJETA 2",12.5,"#241f17")+txt(18,258,"DUERME BAJO",15,"#241f17")+txt(248,88,"TU ALMOHADA",12.5,"#f3e9cc","text-anchor='middle'")+
+     txt(179,197,"AQUÍ EMPEZÓ TODO",7.6,"#f3e9cc","text-anchor='middle'")+"<g transform='rotate(-90 251 170)'>"+txt(251,174,"J + C",11,"#f3e9cc","text-anchor='middle'")+"</g>";
+  return svg("0 0 320 280",h, lit?"Escena iluminada":"Banco bajo un árbol junto al ayuntamiento, de noche");
+}
+function mapSVG(cur,prev){
+  var order=["T","D","V"], ci=order.indexOf(cur), legs=["M165 98 Q232 96 262 154","M262 154 Q252 62 148 38"];
+  var P={T:[165,98,"Tavernes",156,102],D:[262,154,"Dénia",254,174],V:[148,38,"Valencia",139,42]};
+  var h="<rect width='320' height='200' fill='#0a0f20'/>"+
+    "<path d='M150 0 C152 30 150 70 168 100 C185 128 225 140 262 152 L284 160 L276 176 C262 186 250 192 236 200 L0 200 L0 0Z' fill='#1f2947' stroke='#d1a94c' stroke-width='1' stroke-dasharray='3 3'/>"+
+    txt(312,22,"Mar Mediterráneo",10,"#4c5a8a","text-anchor='end' font-style='italic'")+
+    "<path d='M298 176 l5 14 l-5 -4 l-5 4Z' fill='#4c5a8a'/>"+txt(298,172,"N",9,"#4c5a8a","text-anchor='middle'");
+  for(var i=0;i<ci;i++) h+="<path d='"+legs[i]+"' fill='none' stroke='#c22b22' stroke-width='2.5' stroke-linecap='round' pathLength='1' class='leg"+((i===ci-1&&prev&&prev!==cur)?" draw":"")+"'/>";
+  order.forEach(function(k,i){ var p=P[k], seen=i<=ci;
+    if(k===cur) h+="<circle cx='"+p[0]+"' cy='"+p[1]+"' r='5' fill='none' stroke='#d1a94c' stroke-width='1.5'><animate attributeName='r' values='5;15' dur='1.6s' repeatCount='indefinite'/><animate attributeName='opacity' values='1;0' dur='1.6s' repeatCount='indefinite'/></circle>";
+    h+="<circle cx='"+p[0]+"' cy='"+p[1]+"' r='5' fill='"+(seen?"#d1a94c":"#0a0f20")+"' stroke='#d1a94c' stroke-width='1.5'/>"+txt(p[3],p[4],p[2],12,seen?"#f4ecd6":"#7f89a8","text-anchor='end'"); });
+  return svg("0 0 320 200",h,"Mapa del caso: Valencia, Tavernes y Dénia unidos por un hilo rojo");
+}
+
+/* ===================== estado en pantalla ===================== */
+function chaptersDone(){ if(state.step>N) return N; if(state.step<1) return 0;
+  return state.step-1 + ((!state.card && state.task>=CHAPTERS[state.step-1].tasks.length)?1:0); }
+function renderStatus(){
+  var done=chaptersDone(), ev=document.getElementById("ev"); ev.innerHTML="";
+  for (var j=1;j<=N;j++){ var i=el("i", j<=done?"on":(j===state.step?"now":""), j<=done?"✓":String(j)); if(j===done && done>lastDone && lastDone>=0) i.classList.add("new"); ev.appendChild(i); }
+  lastDone=done;
+  document.getElementById("evLbl").textContent="Pruebas archivadas: "+done+" de "+N;
+  var pill=document.getElementById("lockPill"); pill.textContent = state.step>N ? "Candado abierto" : "Candado cerrado"; pill.className="pill"+(state.step>N?" open":"");
+  document.getElementById("sndBtn").textContent = state.mute ? "Sonido: no" : "Sonido: sí";
+  document.getElementById("motBtn").textContent = state.still ? "Animaciones: no" : "Animaciones: sí";
+}
+function go(){ entering=true; render(); window.scrollTo(0,0); }
+function render(){
+  renderStatus(); app.innerHTML="";
+  if (state.step===0) return renderIntro();
+  if (state.step>N) return renderFinal();
+  if (state.card) return renderCard(CHAPTERS[state.step-1], state.step);
+  renderChapter(CHAPTERS[state.step-1], state.step);
+}
+
+function renderIntro(){
+  var c=el("section","card");
+  c.innerHTML =
+    "<p class='kick' id='ik'>Valencia · 18 de noviembre · de noche</p>" +
+    "<h1>El caso del regalo desaparecido</h1>" +
+    "<div class='cstamp slam'>Confidencial</div>" +
+    SCENES.box() +
+    "<div class='brief'>" +
+    "<p><strong>Agente "+CONFIG.agente+":</strong> acabas de volver de cenar y en tu habitación hay una caja que antes no estaba. Dentro está <strong>tu regalo de cumpleaños</strong>. Tiene un candado de cuatro cifras y nadie sabe la combinación.</p>" +
+    "<p>El rastro recorre vuestra historia entera, de una playa en 2020 a esta noche. Siete capítulos: pruebas, una caja fuerte, una linterna, un interrogatorio y registros por tu habitación.</p>" +
+    "<p>Tienes un sobre sellado. <strong>No lo abras</strong> hasta que el caso te lo ordene. Las pistas se pueden pedir, pero cuentan para tu rango final.</p>" +
+    "</div>";
+  c.appendChild(btn("btn big","Aceptar el caso",function(){ state.step=1; state.task=0; state.card=true; save(); SFX.stamp(); go(); }));
+  app.appendChild(c);
+}
+
+function renderCard(ch,num){
+  var c=el("section","card");
+  c.innerHTML = "<div class='big-n' aria-hidden='true'>0"+num+"</div><p class='kick'>Capítulo "+num+" de "+N+"</p><h2></h2><p class='where'>"+ch.place+"</p>" +
+    mapSVG(ch.loc, num>1 ? CHAPTERS[num-2].loc : null);
+  c.appendChild(btn("btn big","Abrir expediente",function(){ state.card=false; save(); SFX.open(); go(); }));
+  app.appendChild(c);
+  type(c.querySelector("h2"), ch.title, 42);
+}
+
+function renderChapter(ch,num){
+  var complete = state.task>=ch.tasks.length;
+  var s = el("section","sheet"+(entering?" in":"")); entering=false;
+  if (ch.scene) s.appendChild(el("div","scene",SCENES[ch.scene]()));
+  var head=el("div","head");
+  head.appendChild(el("div",null,"<p class='kick'>Capítulo "+num+" · "+ch.place+"</p><h2>"+ch.title+"</h2>"));
+  head.appendChild(el("div","stamp"+(complete?" ok":"")+(complete&&justSolved?" slam":""), complete?"Resuelto":"Abierto"));
+  s.appendChild(head);
+  s.appendChild(el("div",null,ch.story));
+  if (CONFIG.fotos[num]){
+    var f=el("figure","photo"), im=el("img"); im.src=CONFIG.fotos[num]; im.alt=CONFIG.pies[num]||"Foto del caso";
+    f.appendChild(im); if(CONFIG.pies[num]) f.appendChild(el("figcaption",null,CONFIG.pies[num])); s.appendChild(f);
+  }
+  ch.tasks.forEach(function(t,i){
+    if (i>state.task) return;
+    var done = i<state.task, box = el("div","task"+(done?" done":""));
+    if (t.pre) box.appendChild(el("div",null,t.pre));
+    if (!done && t.widget) box.appendChild(WIDGETS[t.widget]());
+    box.appendChild(el("p","q",t.q));
+    if (done) box.appendChild(el("div","done-line",t.ok));
+    else { TASKS[t.type](box,t); hintBlock(box,t); }
+    s.appendChild(box);
+  });
+  if (complete){
+    var end = el("div","task");
+    if (ch.outro) end.appendChild(el("div",null,ch.outro));
+    end.appendChild(el("p","q","Prueba archivada: "+ch.proof+"."));
+    end.appendChild(btn("btn big", num===N ? "Cerrar el caso" : "Siguiente capítulo", function(){ state.step++; state.task=0; state.card = state.step<=N; save(); if(state.step>N) SFX.win(); else SFX.tick(); go(); }));
+    s.appendChild(end);
+    if (justSolved) SFX.stamp();
+  }
+  justSolved=false;
+  app.appendChild(s);
+  Array.prototype.forEach.call(s.querySelectorAll('.doc img'),function(im){ im.addEventListener('error',function(){ im.parentNode.hidden=true; }); });
+}
+
+function solved(){
+  state.task++; save(); SFX.ok();
+  justSolved = state.task>=CHAPTERS[state.step-1].tasks.length;
+  render();
+  var ts=document.querySelectorAll(".task"); if(ts.length) ts[ts.length-1].scrollIntoView({block:"center",behavior:REDUCED?"auto":"smooth"});
+}
+function msgLine(box){ var m=el("p","msg"); m.setAttribute("aria-live","polite"); box.appendChild(m); return m; }
+function fail(node,m,text){ m.textContent=text; SFX.bad(); if(node){ node.classList.remove("shake"); void node.offsetWidth; node.classList.add("shake"); } }
+
+function hintBlock(box,t){
+  if (!t.hints) return;
+  var shown=0, holder=el("div"); box.appendChild(holder);
+  var b = btn("link","Pedir una pista",function(){
+    if (shown>=t.hints.length) return;
+    holder.appendChild(el("div","hint","<b>PISTA "+(shown+1)+"</b> · "+t.hints[shown]));
+    shown++; state.hints=(state.hints||0)+1; save(); SFX.tick();
+    if (shown>=t.hints.length) b.remove(); else b.textContent="Pedir otra pista";
+  });
+  box.appendChild(b);
+}
+function wheels(n){
+  var vals=[], box=el("div","wheels");
+  for (var k=0;k<n;k++) (function(i){
+    vals[i]=0; var w=el("div","wheel"), v=el("div","v","0");
+    var up=btn(null,"▲",function(){ vals[i]=(vals[i]+1)%10; v.textContent=vals[i]; SFX.tick(); });
+    var dn=btn(null,"▼",function(){ vals[i]=(vals[i]+9)%10; v.textContent=vals[i]; SFX.tick(); });
+    up.setAttribute("aria-label","Subir rueda "+(i+1)); dn.setAttribute("aria-label","Bajar rueda "+(i+1));
+    w.appendChild(up); w.appendChild(v); w.appendChild(dn); box.appendChild(w);
+  })(k);
+  return { el:box, vals:vals };
+}
+
+/* ===================== tipos de prueba ===================== */
+var TASKS = {
+  code:function(box,t){
+    var form=el("form","row"); form.noValidate=true;
+    var inp=el("input"); inp.type="text"; inp.id="answer"; inp.autocomplete="off"; inp.autocapitalize="characters"; inp.spellcheck=false; inp.setAttribute("autocorrect","off"); inp.setAttribute("enterkeyhint","done"); inp.setAttribute("aria-label",t.q);
+    var goB=el("button","btn","Comprobar"); goB.type="submit";
+    form.appendChild(inp); form.appendChild(goB); box.appendChild(form);
+    var m=msgLine(box);
+    form.addEventListener("submit",function(e){ e.preventDefault();
+      if(!norm(inp.value)){ m.textContent="Escribe una respuesta primero."; return; }
+      if (t.accept.indexOf(norm(inp.value))>=0) return solved();
+      var v=norm(inp.value);
+      if (t.place && t.place.some(function(w){ return v.indexOf(w)>=0; })){ m.textContent="Ese es el escondite, no la palabra clave. Ve a buscar la tarjeta y escribe lo que pone."; SFX.tick(); return; }
+      fail(form,m,"Eso no encaja con las pruebas. Vuelve a mirar o pide una pista.");
+    });
+  },
+  choice:function(box,t){
+    var list=el("div","opts");
+    t.options.forEach(function(o){
+      var b=btn("opt",o.t,function(){
+        if (o.correct) return solved();
+        b.classList.add("bad"); SFX.bad();
+        if(!(b.nextSibling && b.nextSibling.className==="opt-fb")) list.insertBefore(el("div","opt-fb",o.fb), b.nextSibling);
+      });
+      list.appendChild(b);
+    });
+    box.appendChild(list);
+  },
+  order:function(box,t){
+    var arr=t.items.slice(), list=el("div","ord"); box.appendChild(list);
+    function draw(){
+      list.innerHTML="";
+      arr.forEach(function(it,i){
+        var r=el("div","it");
+        r.appendChild(el("span","n",(i+1)+".")); r.appendChild(el("span","tx",it.t));
+        var up=btn("mv","▲",function(){ var x=arr[i-1]; arr[i-1]=arr[i]; arr[i]=x; SFX.tick(); draw(); });
+        var dn=btn("mv","▼",function(){ var x=arr[i+1]; arr[i+1]=arr[i]; arr[i]=x; SFX.tick(); draw(); });
+        up.setAttribute("aria-label","Subir: "+it.t); dn.setAttribute("aria-label","Bajar: "+it.t);
+        up.disabled=i===0; dn.disabled=i===arr.length-1;
+        r.appendChild(up); r.appendChild(dn); list.appendChild(r);
+      });
+    }
+    draw();
+    var m; box.appendChild(btn("btn","Comprobar orden",function(){
+      var okN=0; arr.forEach(function(it,i){ if(it.id===i+1) okN++; });
+      if (okN===arr.length) return solved();
+      fail(list,m,"Hay "+okN+" de "+arr.length+" hechos en su sitio.");
+    }));
+    m=msgLine(box);
+  },
+  safe:function(box,t){
+    var safe=el("div","safe"); safe.innerHTML="<div class='safe-in'><div>FICHA DEL<br>SOSPECHOSO</div></div>";
+    var door=el("div","safe-door","<div class='safe-plate'>ARCHIVO · BRIGADA DE CUMPLEAÑOS</div>"), w=wheels(4);
+    door.appendChild(w.el); safe.appendChild(door); box.appendChild(safe);
+    var m, b=btn("btn","Abrir la caja",function(){
+      if (w.vals.join("")!==t.accept) return fail(safe,m,"La caja no cede. Esa fecha no es.");
+      b.disabled=true; safe.classList.add("open"); SFX.open(); setTimeout(solved, REDUCED?0:1100);
+    });
+    box.appendChild(b); m=msgLine(box);
+  },
+  padlock:function(box,t){
+    var p=el("div","padlock","<div class='shackle'></div>"), body=el("div","pbody"), w=wheels(4);
+    body.appendChild(w.el); p.appendChild(body); box.appendChild(p);
+    var m, b=btn("btn","Probar combinación",function(){
+      if (w.vals.join("")!==t.accept) return fail(p,m,"El candado no se abre. Relee el papel arrugado.");
+      b.disabled=true; p.classList.add("open"); SFX.open(); setTimeout(solved, REDUCED?0:1000);
+    });
+    box.appendChild(b); m=msgLine(box);
+  },
+  who:function(box,t){
+    var sel=[], list=el("div","who"), rows=[];
+    t.items.forEach(function(it,i){
+      var w=el("div","w"); rows.push(w); w.appendChild(el("div","st",it.t));
+      var ch=el("div","ch"), bs=[];
+      [["C",CONFIG.agente],["J",CONFIG.culpable],["B","Los dos"]].forEach(function(o){
+        var b=btn(null,o[1],function(){ sel[i]=o[0]; bs.forEach(function(x){x.classList.remove("sel");x.setAttribute("aria-pressed","false");}); b.classList.add("sel"); b.setAttribute("aria-pressed","true"); w.classList.remove("bad"); SFX.tick(); });
+        b.setAttribute("aria-pressed","false"); bs.push(b); ch.appendChild(b);
+      });
+      w.appendChild(ch); list.appendChild(w);
+    });
+    box.appendChild(list);
+    var m; box.appendChild(btn("btn","Comprobar retrato",function(){
+      var bad=0; t.items.forEach(function(it,i){ var ok=sel[i]===it.a; rows[i].classList.toggle("bad",!ok); if(!ok) bad++; });
+      if (!bad) return solved();
+      fail(null,m, bad===1 ? "Hay un dato mal asignado. Está marcado en rojo." : "Hay "+bad+" datos mal asignados. Están marcados en rojo.");
+    }));
+    m=msgLine(box);
+  },
+  lies:function(box,t){
+    var sel=[], list=el("div","opts");
+    t.items.forEach(function(it,i){
+      var b=btn("opt","<span>"+it.t+"</span>",function(){ sel[i]=!sel[i]; b.classList.toggle("lie",!!sel[i]); b.setAttribute("aria-pressed",sel[i]?"true":"false"); SFX.tick(); });
+      b.setAttribute("aria-pressed","false"); list.appendChild(b);
+    });
+    box.appendChild(list);
+    var m, goB=btn("btn","Comprobar",function(){
+      if (t.items.every(function(it,i){ return !!sel[i]===it.lie; })) return solved();
+      fail(list,m,"No cuadra. Alguna de las marcadas es verdad, o te falta alguna mentira.");
+    });
+    goB.style.marginTop="12px"; box.appendChild(goB); m=msgLine(box);
+  }
+};
+
+/* ===================== piezas interactivas ===================== */
+var WIDGETS = {
+  flash:function(){
+    var wrap=el("div"), f=el("div","flash");
+    f.innerHTML = flashScene(false) + "<div class='lit'>"+flashScene(true)+"</div>";
+    var lit=f.querySelector(".lit");
+    function light(x,y){ var g="radial-gradient(circle 74px at "+x+"px "+y+"px, #000 0, #000 62%, rgba(0,0,0,0) 100%)";
+      lit.style.webkitMaskImage=g; lit.style.maskImage=g; }
+    function at(e){ var r=f.getBoundingClientRect(), up=e.pointerType==="touch"?64:0; light(e.clientX-r.left, e.clientY-r.top-up); }
+    f.addEventListener("pointerdown",function(e){ try{ f.setPointerCapture(e.pointerId); }catch(x){} at(e); }); f.addEventListener("pointermove",at);
+    light(-200,-200);
+    setTimeout(function(){ var r=f.getBoundingClientRect(); if(r.width) light(r.width*.56, r.height*.72); },0);
+    wrap.appendChild(f);
+    wrap.appendChild(el("p","cap","Arrastra el dedo por la imagen. La luz aparece justo encima de tu dedo."));
+    return wrap;
+  },
+  menu:function(){
+    var m=el("div","menu"), h="<h3>Carta de la casa</h3><div class='sub'>Edición especial para la mesa de siempre</div><ul>";
+    MENU.forEach(function(d){ h+="<li><span>"+d[0]+"</span><span class='dots'></span><span class='pr'>"+d[1]+" €</span></li>"; });
+    m.innerHTML=h+"</ul>"; return m;
+  },
+  interr:function(){
+    var w=el("div","interr"), tabs=el("div","tabs"), qa=el("div","qa"), cur=0, tb=[];
+    function draw(){
+      qa.innerHTML="";
+      INTERR[cur].qa.forEach(function(p){
+        var a=el("div","a","«"+p[1]+"»"); a.hidden=true;
+        qa.appendChild(btn(null,"▸ "+p[0],function(){ a.hidden=!a.hidden; if(!a.hidden) SFX.key(); })); qa.appendChild(a);
+      });
+      tb.forEach(function(b,i){ b.classList.toggle("sel",i===cur); b.setAttribute("aria-pressed",i===cur?"true":"false"); });
+    }
+    INTERR.forEach(function(sp,i){
+      var b=btn(null,"<svg viewBox='60 30 80 80' aria-hidden='true'><rect x='60' y='30' width='80' height='80' rx='6' fill='#d8d0bb'/><line x1='60' y1='52' x2='140' y2='52' stroke='#8d8367'/><line x1='60' y1='78' x2='140' y2='78' stroke='#8d8367'/><circle cx='100' cy='62' r='13' fill='#241f17'/><path d='M72 110 q0 -32 28 -32 q28 0 28 32Z' fill='#241f17'/></svg><span>"+sp.n+"</span>",function(){ cur=i; SFX.tick(); draw(); });
+      tb.push(b); tabs.appendChild(b);
+    });
+    w.appendChild(tabs); w.appendChild(qa); draw(); return w;
+  }
+};
+
+/* ===================== final ===================== */
+function renderFinal(){
+  var h=state.hints||0;
+  var rank = h<=2 ? "Inspectora jefe" : (h<=6 ? "Detective de primera" : "Agente en prácticas con mucho encanto");
+  var c=el("section","card");
+  c.innerHTML = "<p class='kick'>Expediente 0301-21</p><h1>Caso resuelto</h1><div class='cstamp slam' style='color:#d1a94c;border-color:#d1a94c'>Archivado</div>";
+  app.appendChild(c);
+  var s = el("section","sheet in");
+  s.innerHTML =
+    "<div class='head'><div><p class='kick'>Confesión firmada</p><h2>Me declaro culpable</h2></div><div class='stamp ok'>Resuelto</div></div>" +
+    "<div class='letter'>"+CONFIG.carta+"<span class='sign'>"+CONFIG.culpable+"</span></div>" +
+    "<p>Combinación del candado:</p>" +
+    "<div class='combo'>"+CONFIG.combinacion.split("").map(function(d){return "<span>"+d+"</span>";}).join("")+"</div>" +
+    "<div class='badge'><svg viewBox='0 0 64 64' aria-hidden='true'><path d='M32 3 L40 10 L51 9 L53 20 L61 27 L55 36 L57 47 L46 50 L41 60 L32 55 L23 60 L18 50 L7 47 L9 36 L3 27 L11 20 L13 9 L24 10Z' fill='#d1a94c' stroke='#86661c' stroke-width='1.5'/><circle cx='32' cy='32' r='15' fill='#2a2412'/><path d='M32 21 l3.2 6.8 7.3 .9 -5.4 5.1 1.4 7.3 -6.5 -3.6 -6.5 3.6 1.4 -7.3 -5.4 -5.1 7.3 -.9Z' fill='#d1a94c'/></svg>" +
+    "<div><b>"+rank+"</b><small>Rango obtenido · pistas pedidas: "+h+"</small></div></div>" +
+    "<p>Abre la caja, agente. Te lo has ganado.</p>";
+  s.appendChild(btn("btn big","Más fuegos artificiales",function(){ fireworks(6000); }));
+  app.appendChild(s);
+  fireworks(9000);
+}
+
+var fxRun = 0;
+function fireworks(ms){
+  if (REDUCED) return;
+  var cv=document.getElementById("fx"), ctx=cv.getContext("2d"), dpr=Math.min(window.devicePixelRatio||1,2);
+  var W=window.innerWidth, H=window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  var cols=["#d1a94c","#f4ecd6","#e0605a","#ffd98a","#9fb6ee"], ps=[], t0=Date.now(), last=0, run=++fxRun;
+  function burst(){ var x=W*(.15+Math.random()*.7), y=H*(.1+Math.random()*.42), c=cols[Math.floor(Math.random()*cols.length)], n=52;
+    for(var i=0;i<n;i++){ var a=Math.PI*2*i/n, v=1.6+Math.random()*3.6; ps.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,c:c}); }
+    SFX.pop(); }
+  (function loop(){
+    if (run!==fxRun) return;
+    var now=Date.now(); ctx.clearRect(0,0,W,H);
+    if (now-t0<ms && now-last>560){ burst(); last=now; }
+    ps=ps.filter(function(p){ return p.life>0; });
+    ps.forEach(function(p){ p.x+=p.vx; p.y+=p.vy; p.vy+=.05; p.vx*=.985; p.vy*=.985; p.life-=.013;
+      ctx.globalAlpha=Math.max(p.life,0); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,2.3,0,6.3); ctx.fill(); });
+    ctx.globalAlpha=1;
+    if (now-t0<ms || ps.length) requestAnimationFrame(loop); else ctx.clearRect(0,0,W,H);
+  })();
+}
+
+/* ===================== controles ===================== */
+document.getElementById("sndBtn").onclick=function(){ state.mute=!state.mute; save(); renderStatus();
+  if (state.mute){ try{ if(silentEl) silentEl.pause(); }catch(e){} } else { unlockAudio(); SFX.ok(); } };
+document.getElementById("motBtn").onclick=function(){ state.still=!state.still; REDUCED=!!state.still; document.body.classList.toggle("still",REDUCED); save(); renderStatus(); };
+document.getElementById("resetBtn").onclick=function(){
+  var box=document.getElementById("resetBox");
+  if (box.firstChild){ box.innerHTML=""; return; }
+  var c=el("div","confirm","¿Borrar el progreso y empezar el caso desde el principio?"), row=el("div","row");
+  row.appendChild(btn("btn","Sí, reiniciar",function(){ state={step:0,task:0,hints:0,card:false,mute:state.mute,still:state.still}; lastDone=-1; fxRun++; save(); box.innerHTML=""; go(); }));
+  row.appendChild(btn("btn alt","Cancelar",function(){ box.innerHTML=""; }));
+  c.appendChild(row); box.appendChild(c);
+};
+
+app.addEventListener("click",function(e){
+  var t=e.target; if(!t || !t.classList || !t.classList.contains("zoomable")) return;
+  var z=el("div","zoomer"), im=el("img"); im.src=t.src; im.alt=t.alt;
+  var close=btn("btn","Cerrar",function(){ z.remove(); });
+  z.appendChild(close); z.appendChild(im); document.body.appendChild(z); SFX.tick();
+  z.scrollLeft=Math.max(0,(im.offsetWidth-z.clientWidth)/2); close.focus();
+});
+
+var wl = null;
+function keepAwake(){ try { if (navigator.wakeLock && !wl) navigator.wakeLock.request("screen").then(function(l){ wl=l; l.addEventListener("release",function(){ wl=null; }); }).catch(function(){}); } catch(e){} }
+["touchend","click","keydown"].forEach(function(ev){ document.addEventListener(ev,function(){ unlockAudio(); if(state.step>0 && state.step<=N) keepAwake(); },true); });
+document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="visible" && state.step>0 && state.step<=N) keepAwake(); });
+(function(){ var pre=new Image(); pre.src="img/retrato.jpg"; })();
+
+render();
+</script>
+</body>
+</html>
